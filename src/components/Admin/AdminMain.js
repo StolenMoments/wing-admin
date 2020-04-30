@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import styled from "styled-components"
+import TextField from "@material-ui/core/TextField";
 
 const StyledDiv = styled.div`
   display: grid;
@@ -34,7 +35,6 @@ const StyledDiv = styled.div`
 `;
 
 const AdminMain = () => {
-
     return (
         <StyledDiv>
             <Link className="artist" to={"/artistRegister"}>

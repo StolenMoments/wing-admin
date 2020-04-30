@@ -1,9 +1,10 @@
 import React from "react";
-import Route from "react-router-dom/es/Route";
+import { Route } from "react-router-dom";
 import AdminMain from "./Admin/AdminMain";
 import ArtistRegisterPage from "./Admin/ArtistRegister/ArtistRegisterPage";
 import MusicRegisterPage from "./Admin/MusicRegister/MusicRegisterPage";
 import AlbumRegisterPage from "./Admin/AlbumRegister/AlbumRegisterPage";
+import ArtistCheckTemplate from "./Admin/ArtistRegister/ArtistCheckTemplate";
 
 const Root = () => {
     return (
@@ -12,6 +13,7 @@ const Root = () => {
             <Route exact path="/artistRegister" component={ArtistRegisterPage}/>
             <Route exact path="/albumRegister" component={AlbumRegisterPage}/>
             <Route exact path="/musicRegister" component={MusicRegisterPage}/>
+            <Route exact path="/artistCheck" component={ArtistCheckTemplate}/>
         </>
     )
 };

@@ -2,28 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80cfb6f8-4b2c-4fa3-b731-c9e6827c8d7c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Admin/AdminMain.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Admin/AlbumRegister/AlbumRegisterPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Admin/ArtistRegister/ArtistRegisterForm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Admin/ArtistRegister/ArtistRegisterPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Admin/ArtistRegister/ArtistRegisterTemplate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Admin/MusicRegister/MusicRegisterPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Root.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/unkno.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Admin/ArtistRegister/ArtistCheckForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Admin/ArtistRegister/ArtistCheckTemplate.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Admin/AdminMain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Admin/AdminMain.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Admin/ArtistRegister/ArtistRegisterForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Admin/ArtistRegister/ArtistRegisterForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Root.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Root.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,11 +40,12 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/Admin/ArtistRegister" />
     <property name="nodejs_package_manager_path" value="yarn" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\mywork\wing-admin\src\components\Admin\ArtistRegister" />
       <recent name="C:\mywork\wing-admin\src\components" />
     </key>
   </component>
@@ -72,7 +59,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1588172805187</updated>
-      <workItem from="1588172807011" duration="2150000" />
+      <workItem from="1588172807011" duration="2675000" />
+      <workItem from="1588225113159" duration="25001000" />
     </task>
     <servers />
   </component>
@@ -84,6 +72,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588173035067" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1588225491257">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1588225491257" />
     <state width="1291" height="262" key="GridCell.Tab.0.bottom" timestamp="1588173404142">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -100,5 +92,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1291" height="262" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588173404142" />
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1588247224307">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1588247224307" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1588225700033">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1588225700033" />
   </component>
 </project>
