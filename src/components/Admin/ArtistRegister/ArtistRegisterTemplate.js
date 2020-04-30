@@ -22,7 +22,7 @@ const ArtistRegisterTemplate = ({children}) => {
         <TemplateBlock>
             <TemplateTitle>
                 <hr />
-                아티스트 정보 등록
+                아티스트 정보 등록 / 수정
                 <hr />
             </TemplateTitle>
             {children}

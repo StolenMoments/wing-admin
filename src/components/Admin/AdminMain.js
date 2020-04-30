@@ -14,7 +14,7 @@ const StyledDiv = styled.div`
     font-family: "NanumSquare",serif;
     font-weight: bold;
     font-size: 1.2rem;
-    width: 13rem;
+    width: 17rem;
     height: 5rem;
   }
   
@@ -39,7 +39,7 @@ const AdminMain = () => {
         <StyledDiv>
             <Link className="artist" to={"/artistRegister"}>
                 <Button variant="contained">
-                    아티스트 정보 등록
+                    아티스트 정보 등록 / 수정
                 </Button>
             </Link>
             <Link className="album" to={"/albumRegister"}>
