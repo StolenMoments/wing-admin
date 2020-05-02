@@ -143,7 +143,7 @@ const ArtistRegisterForm = () => {
             return;
         }
 
-        axios.put(URI + "/api/artist", data)
+        axios.put(URI + "/api/artist/" + data.artistId, data)
             .then(res => {
                 console.log(res);
                 alert("수정 성공");
