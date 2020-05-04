@@ -17,6 +17,7 @@ const GreyBox = styled.div`
 
 const WhiteBox = styled.div`
     width: 800px;
+    min-height: 800px;
     max-height: 800px;
     overflow: auto;
     text-align: center;

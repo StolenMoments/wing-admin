@@ -29,11 +29,25 @@ const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp }) => {
     };
 
     const onChange = useCallback(e => setInput(e.target.value), []);
+    const onEnterPress = e => {
+        if (e.key === "Enter")
+            getArtists(input);
+    }
+    const onClick = (event, row) => {
+        for(let key in setList){
+            if (key === "debutDate") {
+                setList[key](new Date(row[key].substr(0, 4), row[key].substr(5,2),row[key].substr(8,2)));
+            }
+            else setList[key](row[key]);
+        }
+        setExistCheck(true);
+        togglePopUp();
+    }
 
     return (
         <div>
-            <p><h2>아티스트 선택 방법 : 프로필 사진 클릭</h2></p>
-            <TextField label="아티스트 이름 입력" value={input} onChange={onChange} />
+            <h2>아티스트 정보 찾기</h2>
+            <TextField label="아티스트 이름 입력" value={input} onChange={onChange} onKeyPress={onEnterPress}/>
             <Button variant="contained" onClick={() => getArtists(input)}>
                 검색하기
             </Button>
@@ -50,21 +64,15 @@ const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp }) => {
                     {
                         flag ? artists.map(row =>
                             (
-                                <TableRow key={row.artistId}>
+                                <TableRow key={row.artistId}
+                                          hover
+                                          onClick={(event) => onClick(event, row)}
+                                          style={{fontSize: "large"}}
+                                >
                                     <TableCell>
                                         <img
                                             alt="profile" src={row.imageUri}
                                             style={{width: "150px", height: "150px"}}
-                                            onClick={() => {
-                                                for(let key in setList){
-                                                    if (key === "debutDate") {
-                                                        setList[key](new Date(row[key].substr(0, 4), row[key].substr(5,2),row[key].substr(8,2)));
-                                                    }
-                                                    else setList[key](row[key]);
-                                                }
-                                                setExistCheck(true);
-                                                togglePopUp();
-                                            }}
                                         />
                                     </TableCell>
                                     <TableCell width="300px">{row.artistName}</TableCell>
