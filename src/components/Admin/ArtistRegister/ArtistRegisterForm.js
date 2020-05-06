@@ -2,31 +2,15 @@ import React, { useCallback, useState } from 'react'
 import axios from "axios";
 import Calendar from "react-calendar"
 import 'react-calendar/dist/Calendar.css';
-import styled from "styled-components";
 import { Button, TextField } from "@material-ui/core";
 import CheckTemplate from "../Template/CheckTemplate";
 import DataCheck from "../Function/DataCheck";
 import DateConvert from "../Function/DateConvert";
 import ArtistCheckForm from "./ArtistCheckForm";
-
-const URI = "http://localhost:8080";
-
-const StyledDiv = styled.div`
-  display: grid;
-  grid-row-start: 2;
-  grid-row-end: 7;
-  grid-column-start: 1;
-  grid-column-end : 4;
-  justify-content: center; 
-  
-  .MuiTextField-root {
-    margin-bottom: 1rem;
-  }
-  
-`;
+import RegisterFormStyledDiv from "../Template/RegisterFormStyledDiv";
 
 
-const ArtistRegisterForm = () => {
+const ArtistRegisterForm = ({ URI }) => {
 
     // popup toggle
     const [popUp, setPopUp] = useState(true);
@@ -127,7 +111,7 @@ const ArtistRegisterForm = () => {
     };
 
     return (
-        <StyledDiv>
+        <RegisterFormStyledDiv>
             <TextField label="아티스트 ID" value={artistId} readOnly={true}/>
             <TextField label="아티스트 이름" value={artistName} onChange={onChangeArtistName} />
             <Button variant="contained" onClick={togglePopUp}>아티스트 중복 체크</Button>
@@ -137,7 +121,9 @@ const ArtistRegisterForm = () => {
                         <CheckTemplate>
                             <ArtistCheckForm setExistCheck={setExistCheck}
                                              setList={setList}
-                                             togglePopUp={togglePopUp}/>
+                                             togglePopUp={togglePopUp}
+                                             URI={URI}
+                            />
                         </CheckTemplate>
                     )
             }
@@ -157,8 +143,9 @@ const ArtistRegisterForm = () => {
             <Button style={{borderRadius: "1rem", fontSize : "2rem", backgroundColor: "black", color: "white"}}
                     size="large" onClick={() => PostArtist()}>등 록 / 수 정</Button>
             <br/>
-        </StyledDiv>
+        </RegisterFormStyledDiv>
     );
+
 };
 
 export default ArtistRegisterForm

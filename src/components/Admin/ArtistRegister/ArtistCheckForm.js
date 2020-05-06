@@ -7,13 +7,13 @@ import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 
-const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp }) => {
+const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp, URI }) => {
     const [artists, setArtists] = useState([]);
     const [flag, setFlag] = useState(false);
     const [input, setInput] = useState("");
 
     const getArtists = (name) => {
-        axios.get("http://localhost:8080/api/artist", {
+        axios.get(URI + "/api/artist", {
             params: {
                 name: name
             }

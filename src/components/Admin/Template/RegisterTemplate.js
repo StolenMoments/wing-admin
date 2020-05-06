@@ -17,17 +17,19 @@ const TemplateTitle = styled.div`
   
 `;
 
-const RegisterTemplate = ({children}) => {
+const RegisterTemplate = ({ children, title }) => {
+
     return (
         <TemplateBlock>
             <TemplateTitle>
                 <hr />
-                아티스트 정보 등록 / 수정
+                {title}
                 <hr />
             </TemplateTitle>
             {children}
         </TemplateBlock>
     )
+
 };
 
 
