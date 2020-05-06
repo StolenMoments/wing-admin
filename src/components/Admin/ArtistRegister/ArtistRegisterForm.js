@@ -112,7 +112,6 @@ const ArtistRegisterForm = ({ URI }) => {
 
     return (
         <RegisterFormStyledDiv>
-            <TextField label="아티스트 ID" value={artistId} readOnly={true}/>
             <TextField label="아티스트 이름" value={artistName} onChange={onChangeArtistName} />
             <Button variant="contained" onClick={togglePopUp}>아티스트 중복 체크</Button>
             {

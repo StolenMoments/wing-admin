@@ -103,7 +103,6 @@ const AlbumRegisterForm = ({ URI }) => {
 
     return (
         <RegisterFormStyledDiv>
-            <TextField label="앨범 ID" value={albumId} readOnly={true}/>
             <TextField label="앨범 이름" value={albumName} onChange={onChangeAlbumName} />
             <Button variant="contained" onClick={togglePopUp}>앨범 중복 체크</Button>
             {
