@@ -6,6 +6,7 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
+import TableRowOnClick from "../Function/TableRowOnClick";
 
 const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp, URI }) => {
     const [artists, setArtists] = useState([]);
@@ -33,16 +34,6 @@ const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp, URI }) => {
         if (e.key === "Enter")
             getArtists(input);
     }
-    const onClick = (event, row) => {
-        for(let key in setList){
-            if (key === "debutDate") {
-                setList[key](new Date(row[key].substr(0, 4), row[key].substr(5,2),row[key].substr(8,2)));
-            }
-            else setList[key](row[key]);
-        }
-        setExistCheck(true);
-        togglePopUp();
-    }
 
     return (
         <div>
@@ -52,12 +43,13 @@ const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp, URI }) => {
                 검색하기
             </Button>
             <br/>
-            <Button variant="contained" onClick={() => {
-                setList["artistId"](0);
-                setExistCheck(true);
-                togglePopUp();
-            }}>
-                신규생성(동명이인일 경우)
+            <Button variant="contained"
+                    onClick={() => {
+                        setList["artistId"](0);
+                        setExistCheck(true);
+                        togglePopUp();
+                    }}>
+                신규생성(동명인 경우)
             </Button>
             <Table>
                 <TableBody>
@@ -66,7 +58,11 @@ const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp, URI }) => {
                             (
                                 <TableRow key={row.artistId}
                                           hover
-                                          onClick={(event) => onClick(event, row)}
+                                          onClick={() =>
+                                              TableRowOnClick(
+                                                  row, setList,
+                                                  setExistCheck, togglePopUp
+                                              )}
                                           style={{fontSize: "large"}}
                                 >
                                     <TableCell>

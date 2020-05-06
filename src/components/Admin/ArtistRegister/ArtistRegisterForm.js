@@ -14,6 +14,7 @@ const ArtistRegisterForm = ({ URI }) => {
 
     // popup toggle
     const [popUp, setPopUp] = useState(true);
+    const togglePopUp = () => setPopUp(!popUp);
 
     // 중복 체크 여부
     const [existCheck, setExistCheck] = useState(false);
@@ -55,7 +56,6 @@ const ArtistRegisterForm = ({ URI }) => {
     const onChangeAccount = useCallback(e => { setAccount(e.target.value); }, []);
     const onChangeBank = useCallback(e => { setBank(e.target.value); }, []);
 
-    const togglePopUp = () => setPopUp(!popUp);
 
     const PostArtist = () => {
         if (!existCheck) {

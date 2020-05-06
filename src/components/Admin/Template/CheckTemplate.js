@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import ArtistCheckForm from "../ArtistRegister/ArtistCheckForm";
 
 const GreyBox = styled.div`
   display: flex;
