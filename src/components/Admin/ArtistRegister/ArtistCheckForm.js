@@ -48,8 +48,6 @@ const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp }) => {
         <div>
             <h2>아티스트 정보 찾기</h2>
             <TextField label="아티스트 이름 입력" value={input} onChange={onChange} onKeyPress={onEnterPress}/>
-            <h2>아티스트 선택 방법 : 프로필 사진 클릭</h2>
-            <TextField label="아티스트 이름 입력" value={input} onChange={onChange}/>
             <Button variant="contained" onClick={() => getArtists(input)}>
                 검색하기
             </Button>
