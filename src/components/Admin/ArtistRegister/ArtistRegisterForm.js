@@ -4,7 +4,10 @@ import Calendar from "react-calendar"
 import 'react-calendar/dist/Calendar.css';
 import styled from "styled-components";
 import { Button, TextField } from "@material-ui/core";
-import ArtistCheckTemplate from "./ArtistCheckTemplate";
+import CheckTemplate from "../Template/CheckTemplate";
+import DataCheck from "../Function/DataCheck";
+import DateConvert from "../Function/DateConvert";
+import ArtistCheckForm from "./ArtistCheckForm";
 
 const URI = "http://localhost:8080";
 
@@ -22,34 +25,6 @@ const StyledDiv = styled.div`
   
 `;
 
-/**
- * @return {boolean}
- */
-function DataCheck(data) {
-    for (let key in data)
-        if (key !== "artistCompany" && data[key] === "") {
-            alert(key + " 입력하세요");
-            return true;
-        }
-
-    return false;
-}
-
-/**
- * @return {string}
- */
-function DateConvert(date) {
-    const year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    if (month < 10)
-        month = '0' + month;
-
-    let day = date.getDate();
-    if (day < 10)
-        day = '0' + day;
-
-    return year + '-' + month + '-' + day;
-}
 
 const ArtistRegisterForm = () => {
 
@@ -59,8 +34,8 @@ const ArtistRegisterForm = () => {
     // 중복 체크 여부
     const [existCheck, setExistCheck] = useState(false);
 
-    // 수정이면 true, 신규면 false
-    let updateFlag = false;
+    // 수정 true, 신규 false
+    const [updateFlag, setUpdateFlag] = useState(false);
 
 
     const [artistId, setArtistId] = useState(0);
@@ -96,10 +71,7 @@ const ArtistRegisterForm = () => {
     const onChangeAccount = useCallback(e => { setAccount(e.target.value); }, []);
     const onChangeBank = useCallback(e => { setBank(e.target.value); }, []);
 
-    const togglePopUp = () => {
-        setPopUp(!popUp);
-    };
-
+    const togglePopUp = () => setPopUp(!popUp);
 
     const PostArtist = () => {
         if (!existCheck) {
@@ -123,7 +95,7 @@ const ArtistRegisterForm = () => {
 
         if (DataCheck(data)) return;
 
-        if (Number(data.artistId) > 0) updateFlag = true;
+        if (Number(data.artistId) > 0) setUpdateFlag(true);
 
         if (!updateFlag) {
 
@@ -132,11 +104,11 @@ const ArtistRegisterForm = () => {
             console.log("포스트");
             axios.post(URI + "/api/artist", data)
                 .then(res => {
-                console.log(res);
-                alert("등록 성공");
-                // eslint-disable-next-line no-restricted-globals
-                history.go(0);
-            }).catch(rjt => {
+                    console.log(res);
+                    alert("등록 성공");
+                    // eslint-disable-next-line no-restricted-globals
+                    history.go(0);
+                }).catch(rjt => {
                 alert(rjt);
             });
 
@@ -160,13 +132,21 @@ const ArtistRegisterForm = () => {
             <TextField label="아티스트 이름" value={artistName} onChange={onChangeArtistName} />
             <Button variant="contained" onClick={togglePopUp}>아티스트 중복 체크</Button>
             {
-                popUp ? "" : <ArtistCheckTemplate setExistCheck={setExistCheck} setList={setList} togglePopUp={togglePopUp}/>
+                popUp ? "" :
+                    (
+                        <CheckTemplate>
+                            <ArtistCheckForm setExistCheck={setExistCheck}
+                                             setList={setList}
+                                             togglePopUp={togglePopUp}/>
+                        </CheckTemplate>
+                    )
             }
             <br/>
             <TextField label="아티스트 소속사" value={artistCompany} onChange={onChangeArtistCompany} />
             <TextField label="아티스트 장르" value={artistGenre} onChange={onChangeArtistGenre} />
             <TextField label="프로필 이미지 링크" value={imageUri} onChange={onChangeImageUri} />
-            <TextField label="아티스트 설명" style={{width: "350px", height: "300px"}} rows={14} multiline={true} value={description} onChange={onChangeDescription} /><br/>
+            <TextField label="아티스트 설명" style={{width: "350px", height: "300px"}} rows={14}
+                       multiline={true} value={description} onChange={onChangeDescription} /><br/>
             <TextField label="예금주 성명" value={realName} onChange={onChangeRealName} />
             <TextField label="계좌번호" value={account} onChange={onChangeAccount} />
             <TextField label="은행" value={bank} onChange={onChangeBank} />
@@ -174,7 +154,8 @@ const ArtistRegisterForm = () => {
             <TextField label="데뷔일" value={DateConvert(debutDate)} readOnly={true} />
             <Calendar value={debutDate} onChange={setDebutDate}/>
             <br />
-            <Button style={{borderRadius: "1rem", fontSize : "2rem", backgroundColor: "black", color: "white"}} size="large" onClick={() => PostArtist()}>등 록 / 수 정</Button>
+            <Button style={{borderRadius: "1rem", fontSize : "2rem", backgroundColor: "black", color: "white"}}
+                    size="large" onClick={() => PostArtist()}>등 록 / 수 정</Button>
             <br/>
         </StyledDiv>
     );

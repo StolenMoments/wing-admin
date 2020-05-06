@@ -17,7 +17,7 @@ const TemplateTitle = styled.div`
   
 `;
 
-const ArtistRegisterTemplate = ({children}) => {
+const RegisterTemplate = ({children}) => {
     return (
         <TemplateBlock>
             <TemplateTitle>
@@ -31,4 +31,4 @@ const ArtistRegisterTemplate = ({children}) => {
 };
 
 
-export default ArtistRegisterTemplate;
+export default RegisterTemplate;

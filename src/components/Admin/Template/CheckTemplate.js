@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ArtistCheckForm from "./ArtistCheckForm";
+import ArtistCheckForm from "../ArtistRegister/ArtistCheckForm";
 
 const GreyBox = styled.div`
   display: flex;
@@ -25,16 +25,16 @@ const WhiteBox = styled.div`
     z-index: 1;
 `;
 
-const ArtistCheckTemplate = ({ setExistCheck, setList, togglePopUp}) => {
+const CheckTemplate = ({ children }) => {
 
     return (
         <GreyBox>
             <WhiteBox>
-                    <ArtistCheckForm setExistCheck={setExistCheck} setList={setList} togglePopUp={togglePopUp} />
+                {children}
             </WhiteBox>
         </GreyBox>
     )
 
 };
 
-export default ArtistCheckTemplate
+export default CheckTemplate

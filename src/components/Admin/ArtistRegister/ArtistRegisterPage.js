@@ -1,12 +1,12 @@
 import React from 'react'
-import ArtistRegisterTemplate from "./ArtistRegisterTemplate";
+import RegisterTemplate from "../Template/RegisterTemplate";
 import ArtistRegisterForm from "./ArtistRegisterForm";
 
 const ArtistRegisterPage = () => {
     return (
-        <ArtistRegisterTemplate>
+        <RegisterTemplate>
             <ArtistRegisterForm/>
-        </ArtistRegisterTemplate>
+        </RegisterTemplate>
     )
 };
 
