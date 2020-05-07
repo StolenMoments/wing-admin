@@ -1,5 +1,6 @@
 export default function(row, setList, setExistCheck, togglePopUp){
     for(let key in setList){
+        if (!setList.hasOwnProperty(key)) continue;
         if (key === "debutDate" || key === "date") {
             setList[key](
                 new Date(
