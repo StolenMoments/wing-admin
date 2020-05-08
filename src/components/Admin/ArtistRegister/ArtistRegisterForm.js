@@ -8,9 +8,10 @@ import DataCheck from "../Function/DataCheck";
 import DateConvert from "../Function/DateConvert";
 import ArtistCheckForm from "./ArtistCheckForm";
 import RegisterFormStyledDiv from "../Template/RegisterFormStyledDiv";
+import API_URL from "../Constant/API_URL";
 
 
-const ArtistRegisterForm = ({ URI }) => {
+const ArtistRegisterForm = () => {
 
     // popup toggle
     const [popUp, setPopUp] = useState(true);
@@ -86,7 +87,7 @@ const ArtistRegisterForm = ({ URI }) => {
             data[artistId] = null;
             console.log(updateFlag);
             console.log("포스트");
-            axios.post(URI + "/api/artist", data)
+            axios.post(API_URL + "/api/artist", data)
                 .then(res => {
                     console.log(res);
                     alert("등록 성공");
@@ -99,7 +100,7 @@ const ArtistRegisterForm = ({ URI }) => {
             return;
         }
 
-        axios.put(URI + "/api/artist/" + data.artistId, data)
+        axios.put(API_URL + "/api/artist/" + data.artistId, data)
             .then(res => {
                 console.log(res);
                 alert("수정 성공");
@@ -121,7 +122,6 @@ const ArtistRegisterForm = ({ URI }) => {
                             <ArtistCheckForm setExistCheck={setExistCheck}
                                              setList={setList}
                                              togglePopUp={togglePopUp}
-                                             URI={URI}
                             />
                         </CheckTemplate>
                     )

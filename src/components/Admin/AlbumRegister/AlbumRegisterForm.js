@@ -7,8 +7,9 @@ import { Button, TextField } from "@material-ui/core";
 import CheckTemplate from "../Template/CheckTemplate";
 import Calendar from "react-calendar";
 import AlbumCheckForm from "./AlbumCheckForm";
+import API_URL from "../Constant/API_URL";
 
-const AlbumRegisterForm = ({ URI }) => {
+const AlbumRegisterForm = () => {
 
     // popup toggle
     const [popUp, setPopUp] = useState(true);
@@ -76,7 +77,7 @@ const AlbumRegisterForm = ({ URI }) => {
             data[albumId] = null;
             console.log(updateFlag);
             console.log("포스트");
-            axios.post(URI + "/api/album", data)
+            axios.post(API_URL + "/api/album", data)
                 .then(res => {
                     console.log(res);
                     alert("등록 성공");
@@ -89,7 +90,7 @@ const AlbumRegisterForm = ({ URI }) => {
             return;
         }
 
-        axios.put(URI + "/api/album/" + data.albumId, data)
+        axios.put(API_URL + "/api/album/" + data.albumId, data)
             .then(res => {
                 console.log(res);
                 alert("수정 성공");
@@ -112,7 +113,6 @@ const AlbumRegisterForm = ({ URI }) => {
                             <AlbumCheckForm setExistCheck={setExistCheck}
                                              setList={setList}
                                              togglePopUp={togglePopUp}
-                                             URI={URI}
                             />
                         </CheckTemplate>
                     )

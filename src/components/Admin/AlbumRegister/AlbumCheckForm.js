@@ -7,14 +7,15 @@ import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableRowOnClick from "../Function/TableRowOnClick";
+import API_URL from "../Constant/API_URL";
 
-const AlbumCheckForm = ({ setExistCheck, setList, togglePopUp, URI }) => {
+const AlbumCheckForm = ({ setExistCheck, setList, togglePopUp }) => {
     const [albums, setAlbums] = useState([]);
     const [flag, setFlag] = useState(false);
     const [input, setInput] = useState("");
 
     const getAlbums = (name) => {
-        axios.get(URI + "/api/album", {
+        axios.get(API_URL + "/api/album", {
             params: {
                 name: name
             }

@@ -1,6 +1,5 @@
 import React from 'react'
 
-const URI = "http://localhost:8080";
 const MusicRegisterPage = () => {
     return (
         <div>

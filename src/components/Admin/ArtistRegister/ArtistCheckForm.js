@@ -7,14 +7,15 @@ import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableRowOnClick from "../Function/TableRowOnClick";
+import API_URL from "../Constant/API_URL";
 
-const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp, URI }) => {
+const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp }) => {
     const [artists, setArtists] = useState([]);
     const [flag, setFlag] = useState(false);
     const [input, setInput] = useState("");
 
     const getArtists = (name) => {
-        axios.get(URI + "/api/artist", {
+        axios.get(API_URL + "/api/artist", {
             params: {
                 name: name
             }
