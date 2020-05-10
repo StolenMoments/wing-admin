@@ -1,10 +1,12 @@
 import React from 'react'
+import MusicRegisterForm from "./MusicRegisterForm";
+import RegisterTemplate from "../Template/RegisterTemplate";
 
 const MusicRegisterPage = () => {
     return (
-        <div>
-            음악 등록 페이지
-        </div>
+        <RegisterTemplate title="음악 등록 / 수정">
+            <MusicRegisterForm />
+        </RegisterTemplate>
     )
 };
 

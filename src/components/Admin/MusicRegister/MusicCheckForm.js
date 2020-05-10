@@ -9,23 +9,23 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRowOnClick from "../Function/TableRowOnClick";
 import API_URL from "../Constant/API_URL";
 
-const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp, singers }) => {
-    const [artists, setArtists] = useState([]);
+const MusicCheckForm = ({ setExistCheck, setList, togglePopUp, singers }) => {
+    const [musicList, setMusicList] = useState([]);
     const [flag, setFlag] = useState(false);
     const [input, setInput] = useState("");
 
-    const getArtists = (name) => {
-        axios.get(API_URL + "/api/artist", {
+    const getMusicList = (name) => {
+        axios.get(API_URL + "/api/music", {
             params: {
                 name: name
             }
         }).then(res => {
             setFlag(false);
             console.log(res);
-            while(artists.length > 0) artists.pop();
-            res.data.map(artist => artists.push(artist));
-            setArtists(artists);
-            console.log(artists);
+            while(musicList.length > 0) musicList.pop();
+            res.data.map(music => musicList.push(music));
+            setMusicList(musicList);
+            console.log(musicList);
             setFlag(true);
         })
     };
@@ -33,20 +33,20 @@ const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp, singers }) => {
     const onChange = useCallback(e => setInput(e.target.value), []);
     const onEnterPress = e => {
         if (e.key === "Enter")
-            getArtists(input);
+            getMusicList(input);
     }
 
     return (
         <div>
-            <h2>아티스트 정보 찾기</h2>
-            <TextField label="아티스트 이름 입력" value={input} onChange={onChange} onKeyPress={onEnterPress}/>
-            <Button variant="contained" onClick={() => getArtists(input)}>
+            <h2>곡 정보 찾기</h2>
+            <TextField label="곡 이름 입력" value={input} onChange={onChange} onKeyPress={onEnterPress}/>
+            <Button variant="contained" onClick={() => getMusicList(input)}>
                 검색하기
             </Button>
             <br/>
             <Button variant="contained"
                     onClick={() => {
-                        setList["artistId"](0);
+                        setList["musicId"](0);
                         setExistCheck(true);
                         togglePopUp();
                     }}>
@@ -55,9 +55,9 @@ const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp, singers }) => {
             <Table>
                 <TableBody>
                     {
-                        flag ? artists.map(row =>
+                        flag ? musicList.map(row =>
                             (
-                                <TableRow key={row.artistId}
+                                <TableRow key={row.musicId}
                                           hover
                                           onClick={() =>
                                               TableRowOnClick(
@@ -66,15 +66,8 @@ const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp, singers }) => {
                                               )}
                                           style={{fontSize: "large"}}
                                 >
-                                    <TableCell>
-                                        <img
-                                            alt="profile" src={row.imageUri}
-                                            style={{width: "150px", height: "150px"}}
-                                        />
-                                    </TableCell>
-                                    <TableCell width="300px">{row.artistName}</TableCell>
-                                    <TableCell width="200px">{row.artistCompany}</TableCell>
-                                    <TableCell width="120px">{row.artistGenre}</TableCell>
+                                    <TableCell width="300px">{row.musicName}</TableCell>
+                                    <TableCell width="120px">{row.musicGenre}</TableCell>
                                 </TableRow>
                             )
                         ): flag
@@ -85,4 +78,4 @@ const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp, singers }) => {
     )
 };
 
-export default ArtistCheckForm
+export default MusicCheckForm
