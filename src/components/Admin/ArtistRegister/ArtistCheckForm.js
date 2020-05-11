@@ -9,7 +9,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRowOnClick from "../Function/TableRowOnClick";
 import API_URL from "../Constant/API_URL";
 
-const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp, singers }) => {
+const ArtistCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp}) => {
     const [artists, setArtists] = useState([]);
     const [flag, setFlag] = useState(false);
     const [input, setInput] = useState("");
@@ -46,9 +46,12 @@ const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp, singers }) => {
             <br/>
             <Button variant="contained"
                     onClick={() => {
-                        setList["artistId"](0);
+                        setInputs({
+                            ...inputs,
+                            "artistId": 0
+                        })
                         setExistCheck(true);
-                        togglePopUp();
+                        setPopUp();
                     }}>
                 신규생성(동명인 경우)
             </Button>
@@ -59,11 +62,7 @@ const ArtistCheckForm = ({ setExistCheck, setList, togglePopUp, singers }) => {
                             (
                                 <TableRow key={row.artistId}
                                           hover
-                                          onClick={() =>
-                                              TableRowOnClick(
-                                                  row, setList,
-                                                  setExistCheck, togglePopUp, singers
-                                              )}
+                                          onClick={() =>TableRowOnClick( row, inputs, setInputs, setExistCheck, setPopUp )}
                                           style={{fontSize: "large"}}
                                 >
                                     <TableCell>

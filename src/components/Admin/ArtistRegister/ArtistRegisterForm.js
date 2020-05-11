@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import axios from "axios";
 import Calendar from "react-calendar"
 import 'react-calendar/dist/Calendar.css';
@@ -15,47 +15,37 @@ const ArtistRegisterForm = () => {
 
     // popup toggle
     const [popUp, setPopUp] = useState(true);
-    const togglePopUp = () => setPopUp(!popUp);
 
     // 중복 체크 여부
     const [existCheck, setExistCheck] = useState(false);
 
     // 수정 true, 신규 false
-    const [updateFlag, setUpdateFlag] = useState(false);
+    let updateFlag = useRef(false);
 
+    const [inputs, setInputs] = useState({
+        artistId: 0,
+        artistName: "",
+        artistCompany: "",
+        artistGenre: "",
+        debutDate: new Date(),
+        imageUri: "",
+        description: "",
+        realName: "",
+        account: "",
+        bank: "",
+    })
 
-    const [artistId, setArtistId] = useState(0);
-    const [artistName, setArtistName] = useState("");
-    const [artistCompany, setArtistCompany] = useState("");
-    const [artistGenre, setArtistGenre] = useState("");
-    const [debutDate, setDebutDate] = useState(new Date());
-    const [imageUri, setImageUri] = useState("");
-    const [description, setDescription] = useState("");
-    const [realName, setRealName] = useState("");
-    const [account, setAccount] = useState("");
-    const [bank, setBank] = useState("");
+    const {
+        artistId, artistName, artistCompany, artistGenre,
+        debutDate, imageUri, description, realName, account, bank
+    } = inputs;
 
-    const setList = {
-        artistId: setArtistId,
-        artistCompany: setArtistCompany,
-        artistGenre: setArtistGenre,
-        artistName: setArtistName,
-        imageUri: setImageUri,
-        description: setDescription,
-        debutDate: setDebutDate,
-        realName: setRealName,
-        account: setAccount,
-        bank: setBank
+    const onChange = e => {
+        setInputs({
+            ...inputs,
+            [e.target.name]: e.target.value
+        })
     };
-
-    const onChangeArtistName = useCallback(e => { setArtistName(e.target.value); }, []);
-    const onChangeArtistCompany = useCallback(e => { setArtistCompany(e.target.value); }, []);
-    const onChangeArtistGenre = useCallback(e => { setArtistGenre(e.target.value); }, []);
-    const onChangeImageUri = useCallback(e => { setImageUri(e.target.value); }, []);
-    const onChangeDescription = useCallback(e => { setDescription(e.target.value); }, []);
-    const onChangeRealName = useCallback(e => { setRealName(e.target.value); }, []);
-    const onChangeAccount = useCallback(e => { setAccount(e.target.value); }, []);
-    const onChangeBank = useCallback(e => { setBank(e.target.value); }, []);
 
 
     const PostArtist = () => {
@@ -80,7 +70,7 @@ const ArtistRegisterForm = () => {
 
         if (DataCheck(data)) return;
 
-        if (Number(data.artistId) > 0) setUpdateFlag(true);
+        if (Number(data.artistId) > 0) updateFlag.current = !updateFlag;
 
         if (!updateFlag) {
 
@@ -113,31 +103,32 @@ const ArtistRegisterForm = () => {
 
     return (
         <RegisterFormStyledDiv>
-            <TextField label="아티스트 이름" value={artistName} onChange={onChangeArtistName} />
-            <Button variant="contained" onClick={togglePopUp}>아티스트 중복 체크</Button>
+            <TextField label="아티스트 이름" name="artistName" value={artistName} onChange={onChange} />
+            <Button variant="contained" onClick={() => setPopUp(!popUp)}>아티스트 중복 체크</Button>
             {
                 popUp ? "" :
                     (
                         <CheckTemplate>
-                            <ArtistCheckForm setExistCheck={setExistCheck}
-                                             setList={setList}
-                                             togglePopUp={togglePopUp}
+                            <ArtistCheckForm inputs={inputs}
+                                             setInputs={setInputs}
+                                             setExistCheck={setExistCheck}
+                                             setPopUp={() => setPopUp(!popUp)}
                             />
                         </CheckTemplate>
                     )
             }
             <br/>
-            <TextField label="아티스트 소속사" value={artistCompany} onChange={onChangeArtistCompany} />
-            <TextField label="아티스트 장르" value={artistGenre} onChange={onChangeArtistGenre} />
-            <TextField label="프로필 이미지 링크" value={imageUri} onChange={onChangeImageUri} />
-            <TextField label="아티스트 설명" style={{width: "350px", height: "300px"}} rows={14}
-                       multiline={true} value={description} onChange={onChangeDescription} /><br/>
-            <TextField label="예금주 성명" value={realName} onChange={onChangeRealName} />
-            <TextField label="계좌번호" value={account} onChange={onChangeAccount} />
-            <TextField label="은행" value={bank} onChange={onChangeBank} />
+            <TextField label="아티스트 소속사" name="artistCompany" value={artistCompany} onChange={onChange} />
+            <TextField label="아티스트 장르" name="artistGenre" value={artistGenre} onChange={onChange} />
+            <TextField label="프로필 이미지 링크" name="imageUri" value={imageUri} onChange={onChange} />
+            <TextField label="아티스트 설명" name="description" style={{width: "350px", height: "300px"}} rows={14}
+                       multiline={true} value={description} onChange={onChange} /><br/>
+            <TextField label="예금주 성명" name="realName" value={realName} onChange={onChange} />
+            <TextField label="계좌번호" name="account" value={account} onChange={onChange} />
+            <TextField label="은행" name="bank" value={bank} onChange={onChange} />
             <br/>
-            <TextField label="데뷔일" value={DateConvert(debutDate)} readOnly={true} />
-            <Calendar value={debutDate} onChange={setDebutDate}/>
+            <TextField label="데뷔일" name="artistCompany" value={DateConvert(debutDate)} readOnly={true} />
+            <Calendar value={debutDate} onChange={onChange}/>
             <br />
             <Button style={{borderRadius: "1rem", fontSize : "2rem", backgroundColor: "black", color: "white"}}
                     size="large" onClick={() => PostArtist()}>등 록 / 수 정</Button>
