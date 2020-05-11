@@ -1,6 +1,6 @@
 import React from 'react';
 import Root from "./components/Root";
-import GlobalStyle from "./components/Constant/GlobalStyle";
+import GlobalStyle from "./components/StyledComponents/GlobalStyle";
 
 function App() {
   return (
