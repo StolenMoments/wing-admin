@@ -47,6 +47,12 @@ const ArtistRegisterForm = () => {
         })
     };
 
+    const onChangeDate = e => {
+        setInputs({
+            ...inputs,
+            debutDate: e
+        })
+    }
 
     const PostArtist = () => {
         if (!existCheck) {
@@ -119,14 +125,13 @@ const ArtistRegisterForm = () => {
             <TextField label="은행" name="bank" value={bank} onChange={onChange} />
             <br/>
             <TextField label="데뷔일" name="artistCompany" value={DateConvert(debutDate)} readOnly={true} />
-            <Calendar value={debutDate} onChange={onChange}/>
+            <Calendar value={debutDate} onChange={onChangeDate}/>
             <br />
             <Button style={{borderRadius: "1rem", fontSize : "2rem", backgroundColor: "black", color: "white"}}
                     size="large" onClick={() => PostArtist()}>등 록 / 수 정</Button>
             <br/>
         </RegisterFormStyledDiv>
     );
-
 };
 
 export default ArtistRegisterForm

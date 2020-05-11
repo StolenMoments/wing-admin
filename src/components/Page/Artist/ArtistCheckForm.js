@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import axios from 'axios'
 import Button from "@material-ui/core/Button";
 import { TextField } from "@material-ui/core";
@@ -15,7 +15,7 @@ const ArtistCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp}) => {
     // 받아온 아티스트 정보 배열 State
     const [artists, setArtists] = useState([]);
 
-    // 팝업 플래그 State
+    // 팝업 및 검색 시작, 종료 플래그
     const [flag, setFlag] = useState(false);
 
     // 검색어 State
@@ -32,17 +32,18 @@ const ArtistCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp}) => {
                 name: name
             }
         }).then(res => {
+            setFlag(false); // 검색 시작 렌더링. 안하면 재검색 먹통
             while (artists.length > 0) artists.pop();
             res.data.map(artist => artists.push(artist));
             setArtists(artists);
 
             if (artists.length === 0) throw Error("결과가 없습니다");
 
-            setFlag(true); // 팝업 닫기
+            setFlag(true); // 검색 완료 렌더링.
         }).catch(err => alert(err));
     };
 
-    const onChange = useCallback(e => setInput(e.target.value), []);
+    const onChange = e => setInput(e.target.value);
     const onEnterPress = e => {
         if (e.key === "Enter")
             getArtists(input);
@@ -73,20 +74,25 @@ const ArtistCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp}) => {
                         <Table key={row.artistId}>
                             <TableBody>
                                 <TableRow hover
-                                          onClick={() => TableRowOnClick(row, inputs, setInputs, setExistCheck, setPopUp)}
-                                          style={{ fontSize: "large" }}
+                                          onClick={
+                                              () => TableRowOnClick
+                                              (
+                                                  row, inputs,
+                                                  setInputs, setExistCheck,
+                                                  setPopUp
+                                              )
+                                          }
                                 >
                                     <StyledTableCell>
                                         <img
                                             alt="profile" src={row.imageUri}
-                                            style={{ width: "100px", height: "100px" }}
+                                            style={{ width: "125px", height: "125px" }}
                                         />
                                     </StyledTableCell>
-                                    <StyledTableCell width="300px">{row.artistName}</StyledTableCell>
-                                    <StyledTableCell width="200px">{row.artistCompany}</StyledTableCell>
+                                    <StyledTableCell width="250px">{row.artistName}</StyledTableCell>
+                                    <StyledTableCell width="250px">{row.artistCompany}</StyledTableCell>
                                     <StyledTableCell width="120px">{row.artistGenre}</StyledTableCell>
                                 </TableRow>
-
                             </TableBody>
                         </Table>
                     )
