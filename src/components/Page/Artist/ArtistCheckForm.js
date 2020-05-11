@@ -35,7 +35,7 @@ const ArtistCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp}) => {
             res.data.map(artist => artists.push(artist));
             setArtists(artists);
 
-            if (artists.length === 0) throw "결과가 없습니다";
+            if (artists.length === 0) throw Error("결과가 없습니다");
 
             setFlag(true); // 팝업 닫기
         }).catch(err => alert(err));
