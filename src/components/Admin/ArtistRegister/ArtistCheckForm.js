@@ -8,26 +8,37 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableRowOnClick from "../Function/TableRowOnClick";
 import API_URL from "../Constant/API_URL";
+import DefaultMessageDiv from "../Template/DefaultMessageDiv";
 
 const ArtistCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp}) => {
+    // 받아온 아티스트 정보 배열 State
     const [artists, setArtists] = useState([]);
+
+    // 팝업 플래그 State
     const [flag, setFlag] = useState(false);
+
+    // 검색어 State
     const [input, setInput] = useState("");
 
     const getArtists = (name) => {
+        if (name === "") {
+            alert("검색어를 입력하세요")
+            return null;
+        }
+
         axios.get(API_URL + "/api/artist", {
             params: {
                 name: name
             }
         }).then(res => {
-            setFlag(false);
-            console.log(res);
-            while(artists.length > 0) artists.pop();
+            while (artists.length > 0) artists.pop();
             res.data.map(artist => artists.push(artist));
             setArtists(artists);
-            console.log(artists);
-            setFlag(true);
-        })
+
+            if (artists.length === 0) throw "결과가 없습니다";
+
+            setFlag(true); // 팝업 닫기
+        }).catch(err => alert(err));
     };
 
     const onChange = useCallback(e => setInput(e.target.value), []);
@@ -55,33 +66,32 @@ const ArtistCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp}) => {
                     }}>
                 신규생성(동명인 경우)
             </Button>
-            <Table>
-                <TableBody>
-                    {
-                        flag ? artists.map(row =>
-                            (
-                                <TableRow key={row.artistId}
-                                          hover
-                                          onClick={() =>TableRowOnClick( row, inputs, setInputs, setExistCheck, setPopUp )}
-                                          style={{fontSize: "large"}}
+            {
+                flag ? artists.map(row =>
+                    (
+                        <Table key={row.artistId}>
+                            <TableBody>
+                                <TableRow hover
+                                          onClick={() => TableRowOnClick(row, inputs, setInputs, setExistCheck, setPopUp)}
+                                          style={{ fontSize: "large" }}
                                 >
                                     <TableCell>
                                         <img
                                             alt="profile" src={row.imageUri}
-                                            style={{width: "150px", height: "150px"}}
+                                            style={{ width: "100px", height: "100px" }}
                                         />
                                     </TableCell>
                                     <TableCell width="300px">{row.artistName}</TableCell>
                                     <TableCell width="200px">{row.artistCompany}</TableCell>
                                     <TableCell width="120px">{row.artistGenre}</TableCell>
                                 </TableRow>
-                            )
-                        ): flag
-                    }
-                </TableBody>
-            </Table>
+
+                            </TableBody>
+                        </Table>
+                    )
+                ) : <DefaultMessageDiv>- 먼저 검색 후, 해당 아티스트를 클릭하세요 -</DefaultMessageDiv>
+            }
         </div>
     )
-};
-
+}
 export default ArtistCheckForm
