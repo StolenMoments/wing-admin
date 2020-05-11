@@ -32,13 +32,9 @@ const ArtistCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp}) => {
                 name: name
             }
         }).then(res => {
-            setFlag(false); // 검색 시작 렌더링. 안하면 재검색 먹통
-            while (artists.length > 0) artists.pop();
-            res.data.map(artist => artists.push(artist));
-            setArtists(artists);
-
-            if (artists.length === 0) throw Error("결과가 없습니다");
-
+            // 불변성을 어떻게 구현할까?..
+            setArtists(res.data);
+            if (Object.keys(res.data).length === 0) throw Error("검색 결과가 없습니다")
             setFlag(true); // 검색 완료 렌더링.
         }).catch(err => alert(err));
     };
@@ -72,8 +68,9 @@ const ArtistCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp}) => {
                 flag ? artists.map(row =>
                     (
                         <Table key={row.artistId}>
-                            <TableBody>
-                                <TableRow hover
+                            <TableBody key={row.artistId}>
+                                <TableRow key={row.artistId}
+                                          hover
                                           onClick={
                                               () => TableRowOnClick
                                               (
