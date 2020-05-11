@@ -1,10 +1,10 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import AdminMain from "./Admin/AdminMain";
-import ArtistRegisterPage from "./Admin/ArtistRegister/ArtistRegisterPage";
-import MusicRegisterPage from "./Admin/MusicRegister/MusicRegisterPage";
-import AlbumRegisterPage from "./Admin/AlbumRegister/AlbumRegisterPage";
-import CheckTemplate from "./Admin/Template/CheckTemplate";
+import AdminMain from "./AdminMain";
+import ArtistRegisterPage from "./Page/Artist/ArtistRegisterPage";
+import MusicRegisterPage from "./Page/Music/MusicRegisterPage";
+import AlbumRegisterPage from "./Page/Album/AlbumRegisterPage";
+import CheckTemplate from "./Template/CheckTemplate";
 
 const Root = () => {
     return (

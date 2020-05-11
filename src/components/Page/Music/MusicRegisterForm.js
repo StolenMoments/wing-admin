@@ -2,12 +2,12 @@ import React, { useCallback, useState } from 'react'
 import axios from "axios";
 import 'react-calendar/dist/Calendar.css';
 import { Button, TextField } from "@material-ui/core";
-import CheckTemplate from "../Template/CheckTemplate";
-import DataValidation from "../Function/DataValidation";
+import CheckTemplate from "../../Template/CheckTemplate";
+import DataValidation from "../../Function/DataValidation";
 import MusicCheckForm from "./MusicCheckForm";
-import RegisterFormStyledDiv from "../Template/RegisterFormStyledDiv";
-import API_URL from "../Constant/API_URL";
-import ArtistCheckForm from "../ArtistRegister/ArtistCheckForm";
+import RegisterFormStyledDiv from "../../Template/RegisterFormStyledDiv";
+import API_URL from "../../Constant/API_URL";
+import ArtistCheckForm from "../Artist/ArtistCheckForm";
 
 
 const MusicRegisterForm = () => {

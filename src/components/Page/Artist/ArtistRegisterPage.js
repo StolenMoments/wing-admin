@@ -1,5 +1,5 @@
 import React from 'react'
-import RegisterTemplate from "../Template/RegisterTemplate";
+import RegisterTemplate from "../../Template/RegisterTemplate";
 import ArtistRegisterForm from "./ArtistRegisterForm";
 
 

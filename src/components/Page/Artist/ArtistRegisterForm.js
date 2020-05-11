@@ -3,12 +3,12 @@ import axios from "axios";
 import Calendar from "react-calendar"
 import 'react-calendar/dist/Calendar.css';
 import { Button, TextField } from "@material-ui/core";
-import CheckTemplate from "../Template/CheckTemplate";
-import DataValidation from "../Function/DataValidation";
-import DateConvert from "../Function/DateConvert";
+import CheckTemplate from "../../Template/CheckTemplate";
+import DataValidation from "../../Function/DataValidation";
+import DateConvert from "../../Function/DateConvert";
 import ArtistCheckForm from "./ArtistCheckForm";
-import RegisterFormStyledDiv from "../Template/RegisterFormStyledDiv";
-import API_URL from "../Constant/API_URL";
+import RegisterFormStyledDiv from "../../Template/RegisterFormStyledDiv";
+import API_URL from "../../Constant/API_URL";
 
 
 const ArtistRegisterForm = () => {

@@ -1,13 +1,13 @@
 import React, { useCallback, useState } from "react";
-import RegisterFormStyledDiv from "../Template/RegisterFormStyledDiv";
-import DateConvert from "../Function/DateConvert";
-import DataValidation from "../Function/DataValidation";
+import RegisterFormStyledDiv from "../../Template/RegisterFormStyledDiv";
+import DateConvert from "../../Function/DateConvert";
+import DataValidation from "../../Function/DataValidation";
 import axios from "axios";
 import { Button, TextField } from "@material-ui/core";
-import CheckTemplate from "../Template/CheckTemplate";
+import CheckTemplate from "../../Template/CheckTemplate";
 import Calendar from "react-calendar";
 import AlbumCheckForm from "./AlbumCheckForm";
-import API_URL from "../Constant/API_URL";
+import API_URL from "../../Constant/API_URL";
 
 const AlbumRegisterForm = () => {
 

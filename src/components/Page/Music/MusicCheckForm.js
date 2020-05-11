@@ -6,74 +6,66 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
-import TableRowOnClick from "../Function/TableRowOnClick";
-import API_URL from "../Constant/API_URL";
+import TableRowOnClick from "../../Function/TableRowOnClick";
+import API_URL from "../../Constant/API_URL";
 
-const AlbumCheckForm = ({ setExistCheck, setList, togglePopUp }) => {
-    const [albums, setAlbums] = useState([]);
+const MusicCheckForm = ({ setExistCheck, setList, togglePopUp, singers }) => {
+    const [musicList, setMusicList] = useState([]);
     const [flag, setFlag] = useState(false);
     const [input, setInput] = useState("");
 
-    const getAlbums = (name) => {
-        axios.get(API_URL + "/api/album", {
+    const getMusicList = (name) => {
+        axios.get(API_URL + "/api/music", {
             params: {
                 name: name
             }
         }).then(res => {
             setFlag(false);
-            while(albums.length > 0) albums.pop();
-            res.data.map(album => albums.push(album));
-            setAlbums(albums);
+            while(musicList.length > 0) musicList.pop();
+            res.data.map(music => musicList.push(music));
+            setMusicList(musicList);
             setFlag(true);
         })
     };
 
     const onChange = useCallback(e => setInput(e.target.value), []);
-
     const onEnterPress = e => {
         if (e.key === "Enter")
-            getAlbums(input);
+            getMusicList(input);
     }
 
     return (
         <div>
-            <h2>앨범 정보 찾기</h2>
-            <TextField label="앨범 이름 입력" value={input} onChange={onChange} onKeyPress={onEnterPress}/>
-            <Button variant="contained" onClick={() => getAlbums(input)}>
+            <h2>곡 정보 찾기</h2>
+            <TextField label="곡 이름 입력" value={input} onChange={onChange} onKeyPress={onEnterPress}/>
+            <Button variant="contained" onClick={() => getMusicList(input)}>
                 검색하기
             </Button>
             <br/>
             <Button variant="contained"
                     onClick={() => {
-                        setList["albumId"](0);
+                        setList["musicId"](0);
                         setExistCheck(true);
                         togglePopUp();
-                    }}
-            >
+                    }}>
                 신규생성(동명인 경우)
             </Button>
             <Table>
                 <TableBody>
                     {
-                        flag ? albums.map(row =>
+                        flag ? musicList.map(row =>
                             (
-                                <TableRow key={row.albumId}
+                                <TableRow key={row.musicId}
                                           hover
                                           onClick={() =>
                                               TableRowOnClick(
                                                   row, setList,
-                                                  setExistCheck, togglePopUp
+                                                  setExistCheck, togglePopUp, singers
                                               )}
                                           style={{fontSize: "large"}}
                                 >
-                                    <TableCell>
-                                        <img
-                                            alt="profile" src={row.imageUri}
-                                            style={{width: "150px", height: "150px"}}
-                                        />
-                                    </TableCell>
-                                    <TableCell width="300px">{row.albumName}</TableCell>
-                                    <TableCell width="200px">{row.company}</TableCell>
+                                    <TableCell width="300px">{row.musicName}</TableCell>
+                                    <TableCell width="120px">{row.musicGenre}</TableCell>
                                 </TableRow>
                             )
                         ): flag
@@ -84,4 +76,4 @@ const AlbumCheckForm = ({ setExistCheck, setList, togglePopUp }) => {
     )
 };
 
-export default AlbumCheckForm
+export default MusicCheckForm

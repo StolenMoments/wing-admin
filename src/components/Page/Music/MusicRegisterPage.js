@@ -1,6 +1,6 @@
 import React from 'react'
 import MusicRegisterForm from "./MusicRegisterForm";
-import RegisterTemplate from "../Template/RegisterTemplate";
+import RegisterTemplate from "../../Template/RegisterTemplate";
 
 const MusicRegisterPage = () => {
     return (

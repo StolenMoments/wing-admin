@@ -6,9 +6,9 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
-import TableRowOnClick from "../Function/TableRowOnClick";
-import API_URL from "../Constant/API_URL";
-import DefaultMessageDiv from "../Template/DefaultMessageDiv";
+import TableRowOnClick from "../../Function/TableRowOnClick";
+import API_URL from "../../Constant/API_URL";
+import DefaultMessageDiv from "../../Template/DefaultMessageDiv";
 
 const ArtistCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp}) => {
     // 받아온 아티스트 정보 배열 State
