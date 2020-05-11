@@ -4,7 +4,7 @@ import Calendar from "react-calendar"
 import 'react-calendar/dist/Calendar.css';
 import { Button, TextField } from "@material-ui/core";
 import CheckTemplate from "../Template/CheckTemplate";
-import DataCheck from "../Function/DataCheck";
+import DataValidation from "../Function/DataValidation";
 import DateConvert from "../Function/DateConvert";
 import ArtistCheckForm from "./ArtistCheckForm";
 import RegisterFormStyledDiv from "../Template/RegisterFormStyledDiv";
@@ -68,7 +68,7 @@ const ArtistRegisterForm = () => {
         };
 
 
-        if (DataCheck(data)) return;
+        if (DataValidation(data)) return;
 
         if (Number(data.artistId) > 0) updateFlag.current = !updateFlag;
 

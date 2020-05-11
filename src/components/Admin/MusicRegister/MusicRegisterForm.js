@@ -3,7 +3,7 @@ import axios from "axios";
 import 'react-calendar/dist/Calendar.css';
 import { Button, TextField } from "@material-ui/core";
 import CheckTemplate from "../Template/CheckTemplate";
-import DataCheck from "../Function/DataCheck";
+import DataValidation from "../Function/DataValidation";
 import MusicCheckForm from "./MusicCheckForm";
 import RegisterFormStyledDiv from "../Template/RegisterFormStyledDiv";
 import API_URL from "../Constant/API_URL";
@@ -73,9 +73,8 @@ const MusicRegisterForm = () => {
         };
 
 
-        if (DataCheck(data)) return;
+        if (DataValidation(data)) return;
 
-        console.log("musicId : " + Number(musicId))
         if (Number(musicId) > 0)
             updateFlag = true;
 

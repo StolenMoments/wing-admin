@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import RegisterFormStyledDiv from "../Template/RegisterFormStyledDiv";
 import DateConvert from "../Function/DateConvert";
-import DataCheck from "../Function/DataCheck";
+import DataValidation from "../Function/DataValidation";
 import axios from "axios";
 import { Button, TextField } from "@material-ui/core";
 import CheckTemplate from "../Template/CheckTemplate";
@@ -68,7 +68,7 @@ const AlbumRegisterForm = () => {
         };
 
 
-        if (DataCheck(data)) return;
+        if (DataValidation(data)) return;
 
         if (Number(data.albumId) > 0) setUpdateFlag(true);
 
