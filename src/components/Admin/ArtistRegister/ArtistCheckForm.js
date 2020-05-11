@@ -21,7 +21,7 @@ const ArtistCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp}) => {
     const [input, setInput] = useState("");
 
     const getArtists = (name) => {
-        if (name === "") {
+        if (name.trim() === "") {
             alert("검색어를 입력하세요")
             return null;
         }
