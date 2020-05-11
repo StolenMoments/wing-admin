@@ -73,32 +73,23 @@ const ArtistRegisterForm = () => {
         if (Number(data.artistId) > 0) updateFlag.current = !updateFlag;
 
         if (!updateFlag) {
-
             data[artistId] = null;
-            console.log(updateFlag);
-            console.log("포스트");
             axios.post(API_URL + "/api/artist", data)
                 .then(res => {
-                    console.log(res);
                     alert("등록 성공");
                     // eslint-disable-next-line no-restricted-globals
                     history.go(0);
-                }).catch(rjt => {
-                alert(rjt);
-            });
+                }).catch(rjt =>  alert(rjt));
 
             return;
         }
 
         axios.put(API_URL + "/api/artist/" + data.artistId, data)
             .then(res => {
-                console.log(res);
                 alert("수정 성공");
                 // eslint-disable-next-line no-restricted-globals
                 history.go(0);
-            }).catch(rjt => {
-            alert(rjt);
-        });
+            }).catch(rjt =>  alert(rjt));
     };
 
     return (

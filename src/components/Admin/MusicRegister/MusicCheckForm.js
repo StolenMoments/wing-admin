@@ -21,11 +21,9 @@ const MusicCheckForm = ({ setExistCheck, setList, togglePopUp, singers }) => {
             }
         }).then(res => {
             setFlag(false);
-            console.log(res);
             while(musicList.length > 0) musicList.pop();
             res.data.map(music => musicList.push(music));
             setMusicList(musicList);
-            console.log(musicList);
             setFlag(true);
         })
     };

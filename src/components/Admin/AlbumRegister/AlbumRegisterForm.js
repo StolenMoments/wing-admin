@@ -73,32 +73,23 @@ const AlbumRegisterForm = () => {
         if (Number(data.albumId) > 0) setUpdateFlag(true);
 
         if (!updateFlag) {
-
             data[albumId] = null;
-            console.log(updateFlag);
-            console.log("포스트");
             axios.post(API_URL + "/api/album", data)
                 .then(res => {
-                    console.log(res);
                     alert("등록 성공");
                     // eslint-disable-next-line no-restricted-globals
                     history.go(0);
-                }).catch(rjt => {
-                alert(rjt);
-            });
+                }).catch(rjt => alert(rjt));
 
             return;
         }
 
         axios.put(API_URL + "/api/album/" + data.albumId, data)
             .then(res => {
-                console.log(res);
                 alert("수정 성공");
                 // eslint-disable-next-line no-restricted-globals
                 history.go(0);
-            }).catch(rjt => {
-            alert(rjt);
-        });
+            }).catch(rjt => alert(rjt));
     };
 
 

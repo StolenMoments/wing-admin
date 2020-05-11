@@ -21,11 +21,9 @@ const AlbumCheckForm = ({ setExistCheck, setList, togglePopUp }) => {
             }
         }).then(res => {
             setFlag(false);
-            console.log(res);
             while(albums.length > 0) albums.pop();
             res.data.map(album => albums.push(album));
             setAlbums(albums);
-            console.log(albums);
             setFlag(true);
         })
     };
