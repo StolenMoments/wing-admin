@@ -5,7 +5,7 @@ import { Button, TextField } from "@material-ui/core";
 import CheckTemplate from "../../Template/CheckTemplate";
 import DataValidation from "../../Function/DataValidation";
 import MusicCheckForm from "./MusicCheckForm";
-import RegisterFormStyledDiv from "../../Template/RegisterFormStyledDiv";
+import RegisterFormStyledDiv from "../../StyledComponents/RegisterFormStyledDiv";
 import API_URL from "../../Constant/API_URL";
 import ArtistCheckForm from "../Artist/ArtistCheckForm";
 

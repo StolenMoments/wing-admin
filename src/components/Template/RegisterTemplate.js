@@ -6,14 +6,13 @@ const TemplateBlock = styled.div`
 `;
 
 const TemplateTitle = styled.div`
-  @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
   grid-row: 1;
   grid-column: 2;
   margin-bottom: 2rem;
   height: 5rem;
   text-align: center;
   font-size: 2rem;
-  font-family: "NanumSquare",serif;
+  font-family: "NanumBarunGothic",serif;
   
 `;
 

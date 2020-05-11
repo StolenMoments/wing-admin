@@ -8,8 +8,7 @@ const StyledDiv = styled.div`
   grid-auto-rows: minmax(100px, auto);
   
   Button {
-    //@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
-    font-family: "NanumSquare",serif;
+    font-family: "NanumBarunGothic",serif;
     font-weight: bold;
     font-size: 1.2rem;
     width: 17rem;

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import RegisterFormStyledDiv from "../../Template/RegisterFormStyledDiv";
+import RegisterFormStyledDiv from "../../StyledComponents/RegisterFormStyledDiv";
 import DateConvert from "../../Function/DateConvert";
 import DataValidation from "../../Function/DataValidation";
 import axios from "axios";

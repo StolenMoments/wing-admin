@@ -5,10 +5,11 @@ import { TextField } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
+import StyledTableCell from "../../CustomMui/StyledTableCell";
 import TableRowOnClick from "../../Function/TableRowOnClick";
 import API_URL from "../../Constant/API_URL";
-import DefaultMessageDiv from "../../Template/DefaultMessageDiv";
+import DefaultMessageDiv from "../../StyledComponents/DefaultMessageDiv";
+
 
 const ArtistCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp}) => {
     // 받아온 아티스트 정보 배열 State
@@ -49,7 +50,7 @@ const ArtistCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp}) => {
 
     return (
         <div>
-            <h2>아티스트 정보 찾기</h2>
+            <h3>아티스트 정보 찾기</h3>
             <TextField label="아티스트 이름 입력" value={input} onChange={onChange} onKeyPress={onEnterPress}/>
             <Button variant="contained" onClick={() => getArtists(input)}>
                 검색하기
@@ -75,15 +76,15 @@ const ArtistCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp}) => {
                                           onClick={() => TableRowOnClick(row, inputs, setInputs, setExistCheck, setPopUp)}
                                           style={{ fontSize: "large" }}
                                 >
-                                    <TableCell>
+                                    <StyledTableCell>
                                         <img
                                             alt="profile" src={row.imageUri}
                                             style={{ width: "100px", height: "100px" }}
                                         />
-                                    </TableCell>
-                                    <TableCell width="300px">{row.artistName}</TableCell>
-                                    <TableCell width="200px">{row.artistCompany}</TableCell>
-                                    <TableCell width="120px">{row.artistGenre}</TableCell>
+                                    </StyledTableCell>
+                                    <StyledTableCell width="300px">{row.artistName}</StyledTableCell>
+                                    <StyledTableCell width="200px">{row.artistCompany}</StyledTableCell>
+                                    <StyledTableCell width="120px">{row.artistGenre}</StyledTableCell>
                                 </TableRow>
 
                             </TableBody>
