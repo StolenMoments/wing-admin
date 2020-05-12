@@ -121,7 +121,7 @@ const ArtistRegisterForm = () => {
             <TextField label="계좌번호" name="account" value={account} onChange={onChange} />
             <TextField label="은행" name="bank" value={bank} onChange={onChange} />
             <br/>
-            <TextField label="데뷔일" name="artistCompany" value={DateConvert(debutDate)} readOnly={true} />
+            <TextField label="데뷔일" name="debutDate" value={DateConvert(debutDate)} readOnly={true} />
             <Calendar value={debutDate} onChange={onChangeDate}/>
             <SubmitButton Post={PostArtist}/>
         </RegisterFormStyledDiv>

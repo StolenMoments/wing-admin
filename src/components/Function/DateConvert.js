@@ -1,6 +1,6 @@
 export default function DateConvert(date) {
     const year = date.getFullYear();
-    let month = date.getMonth();
+    let month = date.getMonth() + 1;
     if (month < 10)
         month = '0' + month;
 

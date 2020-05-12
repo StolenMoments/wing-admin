@@ -6,7 +6,7 @@ export default function(row, inputs, setInputs, setExistCheck, setPopUp){
                     ...inputs,
                     [key] : new Date(
                         row[key].substr(0, 4),
-                        row[key].substr(5, 2),
+                        Number(row[key].substr(5, 2)) - 1,
                         row[key].substr(8, 2)
                     )
                 }
