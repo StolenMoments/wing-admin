@@ -115,13 +115,14 @@ const ArtistRegisterForm = () => {
             <TextField label="아티스트 장르" name="artistGenre" value={artistGenre} onChange={onChange} />
             <TextField label="프로필 이미지 링크" name="imageUri" value={imageUri} onChange={onChange} />
             <TextField label="Youtube 영상 코드" name="video" value={video} onChange={onChange} />
-            <TextField label="아티스트 설명" name="description" style={{width: "350px", height: "300px"}} rows={14}
+            <TextField label="아티스트 설명" name="description" style={{height: "300px"}} rows={14}
                        multiline={true} value={description} onChange={onChange} /><br/>
             <TextField label="예금주 성명" name="realName" value={realName} onChange={onChange} />
             <TextField label="계좌번호" name="account" value={account} onChange={onChange} />
             <TextField label="은행" name="bank" value={bank} onChange={onChange} />
             <br/>
             <TextField label="데뷔일" name="debutDate" value={DateConvert(debutDate)} readOnly={true} />
+            <br/>
             <Calendar value={debutDate} onChange={onChangeDate}/>
             <SubmitButton Post={PostArtist}/>
         </RegisterFormStyledDiv>

@@ -1,34 +1,32 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const TemplateBlock = styled.div`
-  display: grid;
-`;
 
 const TemplateTitle = styled.div`
-  grid-row: 1;
-  grid-column: 2;
-  margin-bottom: 2rem;
-  height: 5rem;
+  border-style: solid;
+  box-sizing: border-box;
+  background: beige;
+  color: darkblue;
+  font-weight: bold;
+  margin-left: 30rem;
+  margin-right: 30rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   text-align: center;
   font-size: 2rem;
   font-family: "NanumBarunGothic",serif;
-  
 `;
 
 const RegisterTemplate = ({ children, title }) => {
 
     return (
-        <TemplateBlock>
+        <>
             <TemplateTitle>
-                <hr />
                 {title}
-                <hr />
             </TemplateTitle>
             {children}
-        </TemplateBlock>
+        </>
     )
-
 };
 
 
