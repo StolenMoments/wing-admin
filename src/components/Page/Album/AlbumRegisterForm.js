@@ -8,6 +8,7 @@ import CheckTemplate from "../../Template/CheckTemplate";
 import Calendar from "react-calendar";
 import AlbumCheckForm from "./AlbumCheckForm";
 import API_URL from "../../Constant/API_URL";
+import SubmitButton from "../../CustomMui/SubmitButton";
 
 const AlbumRegisterForm = () => {
 
@@ -118,10 +119,7 @@ const AlbumRegisterForm = () => {
             <br/>
             <TextField label="발매일" value={DateConvert(date)} readOnly={true} />
             <Calendar value={date} onChange={setDate}/>
-            <br />
-            <Button style={{borderRadius: "1rem", fontSize : "2rem", backgroundColor: "black", color: "white"}}
-                    size="large" onClick={() => PostAlbum()}>등 록 / 수 정</Button>
-            <br/>
+            <SubmitButton Post={PostAlbum} />
         </RegisterFormStyledDiv>
     )
 
