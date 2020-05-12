@@ -9,6 +9,7 @@ import DateConvert from "../../Function/DateConvert";
 import ArtistCheckForm from "./ArtistCheckForm";
 import RegisterFormStyledDiv from "../../StyledComponents/RegisterFormStyledDiv";
 import API_URL from "../../Constant/API_URL";
+import SubmitButton from "../../CustomMui/SubmitButton";
 
 
 const ArtistRegisterForm = () => {
@@ -33,11 +34,13 @@ const ArtistRegisterForm = () => {
         realName: "",
         account: "",
         bank: "",
+        video: ""
     })
 
     const {
         artistId, artistName, artistCompany, artistGenre,
-        debutDate, imageUri, description, realName, account, bank
+        debutDate, imageUri, description, realName, account,
+        bank, video
     } = inputs;
 
     const onChange = e => {
@@ -112,6 +115,7 @@ const ArtistRegisterForm = () => {
             <TextField label="아티스트 소속사" name="artistCompany" value={artistCompany} onChange={onChange} />
             <TextField label="아티스트 장르" name="artistGenre" value={artistGenre} onChange={onChange} />
             <TextField label="프로필 이미지 링크" name="imageUri" value={imageUri} onChange={onChange} />
+            <TextField label="Youtube 영상 코드" name="video" value={video} onChange={onChange} />
             <TextField label="아티스트 설명" name="description" style={{width: "350px", height: "300px"}} rows={14}
                        multiline={true} value={description} onChange={onChange} /><br/>
             <TextField label="예금주 성명" name="realName" value={realName} onChange={onChange} />
@@ -120,10 +124,7 @@ const ArtistRegisterForm = () => {
             <br/>
             <TextField label="데뷔일" name="artistCompany" value={DateConvert(debutDate)} readOnly={true} />
             <Calendar value={debutDate} onChange={onChangeDate}/>
-            <br />
-            <Button style={{borderRadius: "1rem", fontSize : "2rem", backgroundColor: "black", color: "white"}}
-                    size="large" onClick={() => PostArtist()}>등 록 / 수 정</Button>
-            <br/>
+            <SubmitButton Post={PostArtist}/>
         </RegisterFormStyledDiv>
     );
 };
