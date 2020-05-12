@@ -61,27 +61,19 @@ const ArtistRegisterForm = () => {
         }
 
         const data = {
-            artistId: artistId,
-            artistName: artistName,
-            artistCompany: artistCompany,
-            artistGenre: artistGenre,
-            debutDate: DateConvert(debutDate),
-            imageUri: imageUri,
-            description: description,
-            realName: realName,
-            account: account,
-            bank: bank
+            ...inputs,
+            debutDate: DateConvert(debutDate)
         };
-
 
         if (DataValidation(data)) return;
 
         if (Number(data.artistId) > 0) updateFlag.current = !updateFlag;
 
+        // POST
         if (!updateFlag) {
             data[artistId] = null;
             axios.post(API_URL + "/api/artist", data)
-                .then(res => {
+                .then(() => {
                     alert("등록 성공");
                     // eslint-disable-next-line no-restricted-globals
                     history.go(0);
@@ -90,8 +82,10 @@ const ArtistRegisterForm = () => {
             return;
         }
 
+        // PUT
         axios.put(API_URL + "/api/artist/" + data.artistId, data)
             .then(res => {
+                console.log(data)
                 alert("수정 성공");
                 // eslint-disable-next-line no-restricted-globals
                 history.go(0);

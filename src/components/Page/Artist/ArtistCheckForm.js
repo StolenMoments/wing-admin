@@ -2,21 +2,13 @@ import React, { useState } from "react";
 import axios from 'axios'
 import Button from "@material-ui/core/Button";
 import { TextField } from "@material-ui/core";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import StyledTableCell from "../../CustomMui/StyledTableCell";
-import TableRowOnClick from "../../Function/TableRowOnClick";
 import API_URL from "../../Constant/API_URL";
-import DefaultMessageDiv from "../../StyledComponents/DefaultMessageDiv";
+import ArtistCheckResultTable from "./ArtistCheckResultTable";
 
 
 const ArtistCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp}) => {
     // 받아온 아티스트 정보 배열 State
     const [artists, setArtists] = useState([]);
-
-    // 팝업 및 검색 시작, 종료 플래그
-    const [flag, setFlag] = useState(false);
 
     // 검색어 State
     const [input, setInput] = useState("");
@@ -32,10 +24,9 @@ const ArtistCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp}) => {
                 name: name
             }
         }).then(res => {
-            // 불변성을 어떻게 구현할까?..
-            setArtists(res.data);
+            // 불변성을 어떻게 구현할까?..검색할 때 마다 연속성이 보장되지 않으므로 불변성을 유지할 필요가 없다고 생각...
+            setArtists(res.data)
             if (Object.keys(res.data).length === 0) throw Error("검색 결과가 없습니다")
-            setFlag(true); // 검색 완료 렌더링.
         }).catch(err => alert(err));
     };
 
@@ -64,37 +55,12 @@ const ArtistCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp}) => {
                     }}>
                 신규생성(동명인 경우)
             </Button>
-            {
-                flag ? artists.map(row =>
-                    (
-                        <Table key={row.artistId}>
-                            <TableBody key={row.artistId}>
-                                <TableRow key={row.artistId}
-                                          hover
-                                          onClick={
-                                              () => TableRowOnClick
-                                              (
-                                                  row, inputs,
-                                                  setInputs, setExistCheck,
-                                                  setPopUp
-                                              )
-                                          }
-                                >
-                                    <StyledTableCell>
-                                        <img
-                                            alt="profile" src={row.imageUri}
-                                            style={{ width: "125px", height: "125px" }}
-                                        />
-                                    </StyledTableCell>
-                                    <StyledTableCell width="250px">{row.artistName}</StyledTableCell>
-                                    <StyledTableCell width="250px">{row.artistCompany}</StyledTableCell>
-                                    <StyledTableCell width="120px">{row.artistGenre}</StyledTableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    )
-                ) : <DefaultMessageDiv>- 먼저 검색 후, 해당 아티스트를 클릭하세요 -</DefaultMessageDiv>
-            }
+            <ArtistCheckResultTable artists={artists}
+                                    inputs={inputs}
+                                    setInputs={setInputs}
+                                    setExistCheck={setExistCheck}
+                                    setPopUp={setPopUp}
+            />
         </div>
     )
 }
