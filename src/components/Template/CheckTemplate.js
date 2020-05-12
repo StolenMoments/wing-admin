@@ -16,7 +16,7 @@ const GreyBox = styled.div`
 
 const WhiteBox = styled.div`
     font-family: "NanumBarunGothic", sans-serif;
-    width: 800px;
+    width: 1200px;
     min-height: 800px;
     max-height: 800px;
     overflow: auto;

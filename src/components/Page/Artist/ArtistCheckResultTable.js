@@ -26,15 +26,14 @@ const ArtistCheckResultTable = ({ artists, inputs, setInputs, setExistCheck, set
                                   )
                               }
                     >
-                        <StyledTableCell>
+                        <StyledTableCell style={{width: "100px"}}>
                             <img
                                 alt="profile" src={row.imageUri}
-                                style={{ width: "125px", height: "125px" }}
+                                style={{ width: "100px", height: "100px" }}
                             />
                         </StyledTableCell>
                         <StyledTableCell width="250px">{row.artistName}</StyledTableCell>
                         <StyledTableCell width="250px">{row.artistCompany}</StyledTableCell>
-                        <StyledTableCell width="120px">{row.artistGenre}</StyledTableCell>
                     </TableRow>
                 </TableBody>
             </Table>
