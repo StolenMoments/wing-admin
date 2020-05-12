@@ -6,7 +6,7 @@ import TableRowOnClick from "../../Function/TableRowOnClick";
 import StyledTableCell from "../../CustomMui/StyledTableCell";
 import DefaultMessageDiv from "../../StyledComponents/DefaultMessageDiv";
 
-const ArtistCheckResultTable = ({ artists, inputs, setInputs, setExistCheck, setPopUp} ) => {
+const ArtistCheckResultTable = ({ artists, inputs, setInputs, setExistCheck, setPopUp }) => {
 
     if (artists.length === 0)
         return <DefaultMessageDiv>검색 후, 해당 항목을 클릭하세요</DefaultMessageDiv>
