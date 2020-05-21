@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useRef, useState } from "react";
 import RegisterFormStyledDiv from "../../StyledComponents/RegisterFormStyledDiv";
 import DateConvert from "../../Function/DateConvert";
 import DataValidation from "../../Function/DataValidation";
@@ -14,42 +14,42 @@ const AlbumRegisterForm = () => {
 
     // popup toggle
     const [popUp, setPopUp] = useState(true);
-    const togglePopUp = () => setPopUp(!popUp);
 
     // 중복 체크 여부
     const [existCheck, setExistCheck] = useState(false);
 
     // 수정 true, 신규 false
-    const [updateFlag, setUpdateFlag] = useState(false);
+    let updateFlag = useRef(false);
 
+    const [inputs, setInputs] = useState({
+        albumId: 0,
+        albumName: "",
+        albumGenre: "",
+        company: "",
+        distributor: "",
+        date: new Date(),
+        imageUri: "",
+        description: ""
+    })
 
-    const [albumId, setAlbumId] = useState(0);
-    const [albumName, setAlbumName] = useState("");
-    const [albumGenre, setAlbumGenre] = useState("");
-    const [company, setCompany] = useState("");
-    const [distributor, setDistributor] = useState("");
-    const [date, setDate] = useState(new Date());
-    const [imageUri, setImageUri] = useState("");
-    const [description, setDescription] = useState("");
+    const {
+        albumId, albumName, albumGenre, company,
+        distributor, date, imageUri, description
+    } = inputs;
 
-    const setList = {
-        albumId: setAlbumId,
-        albumName: setAlbumName,
-        albumGenre: setAlbumGenre,
-        company: setCompany,
-        distributor: setDistributor,
-        date: setDate,
-        imageUri: setImageUri,
-        description: setDescription
+    const onChange = e => {
+        setInputs({
+            ...inputs,
+            [e.target.name]: e.target.value
+        })
     };
 
-    const onChangeAlbumName = useCallback(e => { setAlbumName(e.target.value); }, []);
-    const onChangeAlbumGenre = useCallback(e => { setAlbumGenre(e.target.value); }, []);
-    const onChangeCompany = useCallback(e => { setCompany(e.target.value); }, []);
-    const onChangeDistributor = useCallback(e => { setDistributor(e.target.value); }, []);
-    const onChangeImageUri = useCallback(e => { setImageUri(e.target.value); }, []);
-    const onChangeDescription = useCallback(e => { setDescription(e.target.value); }, []);
-
+    const onChangeDate = e => {
+        setInputs({
+            ...inputs,
+            date: e
+        })
+    }
 
     const PostAlbum = () => {
         if (!existCheck) {
@@ -71,7 +71,7 @@ const AlbumRegisterForm = () => {
 
         if (DataValidation(data)) return;
 
-        if (Number(data.albumId) > 0) setUpdateFlag(true);
+        if (Number(data.albumId) > 0) updateFlag.current = !updateFlag;
 
         if (!updateFlag) {
             data[albumId] = null;
@@ -96,29 +96,30 @@ const AlbumRegisterForm = () => {
 
     return (
         <RegisterFormStyledDiv>
-            <TextField label="앨범 이름" value={albumName} onChange={onChangeAlbumName} />
-            <Button variant="contained" onClick={togglePopUp}>앨범 중복 체크</Button>
+            <TextField label="앨범 이름" name="albumName" value={albumName} onChange={onChange} />
+            <Button variant="contained" onClick={() => setPopUp(!popUp)}>앨범 중복 체크</Button>
             {
                 popUp ? "" :
                     (
                         <CheckTemplate>
-                            <AlbumCheckForm setExistCheck={setExistCheck}
-                                             setList={setList}
-                                             togglePopUp={togglePopUp}
+                            <AlbumCheckForm inputs={inputs}
+                                            setInputs={setInputs}
+                                            setExistCheck={setExistCheck}
+                                            setPopUp={() => setPopUp(!popUp)}
                             />
                         </CheckTemplate>
                     )
             }
             <br/>
-            <TextField label="앨범 장르" value={albumGenre} onChange={onChangeAlbumGenre} />
-            <TextField label="기획사" value={company} onChange={onChangeCompany} />
-            <TextField label="발매사" value={distributor} onChange={onChangeDistributor} />
-            <TextField label="앨범 자켓 링크" value={imageUri} onChange={onChangeImageUri} />
-            <TextField label="앨범 설명" style={{width: "350px", height: "300px"}} rows={14}
-                       multiline={true} value={description} onChange={onChangeDescription} /><br/>
+            <TextField label="앨범 장르" name="albumGenre" value={albumGenre} onChange={onChange} />
+            <TextField label="기획사" name="company" value={company} onChange={onChange} />
+            <TextField label="발매사" name="distributor" value={distributor} onChange={onChange} />
+            <TextField label="앨범 자켓 링크" name="imageUri" value={imageUri} onChange={onChange} />
+            <TextField label="앨범 설명" name="description" style={{width: "350px", height: "300px"}} rows={14}
+                       multiline={true} value={description} onChange={onChange} /><br/>
             <br/>
-            <TextField label="발매일" value={DateConvert(date)} readOnly={true} />
-            <Calendar value={date} onChange={setDate}/>
+            <TextField label="발매일" name="date" value={DateConvert(date)} readOnly={true} />
+            <Calendar value={date} onChange={onChangeDate}/>
             <SubmitButton Post={PostAlbum} />
         </RegisterFormStyledDiv>
     )

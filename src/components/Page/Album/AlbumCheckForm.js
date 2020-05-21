@@ -2,16 +2,12 @@ import React, { useCallback, useState } from "react";
 import axios from 'axios'
 import Button from "@material-ui/core/Button";
 import { TextField } from "@material-ui/core";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableRowOnClick from "../../Function/TableRowOnClick";
 import API_URL from "../../Constant/API_URL";
+import AlbumCheckResultTable from "./AlbumCheckResultTable";
 
-const AlbumCheckForm = ({ setExistCheck, setList, togglePopUp }) => {
+const AlbumCheckForm = ({ inputs, setInputs, setExistCheck, setPopUp }) => {
     const [albums, setAlbums] = useState([]);
-    const [flag, setFlag] = useState(false);
+
     const [input, setInput] = useState("");
 
     const getAlbums = (name) => {
@@ -20,12 +16,9 @@ const AlbumCheckForm = ({ setExistCheck, setList, togglePopUp }) => {
                 name: name
             }
         }).then(res => {
-            setFlag(false);
-            while(albums.length > 0) albums.pop();
-            res.data.map(album => albums.push(album));
-            setAlbums(albums);
-            setFlag(true);
-        })
+            setAlbums(res.data)
+            if (Object.keys(res.data).length === 0) throw Error("검색 결과가 없습니다")
+        }).catch(err => alert(err));
     };
 
     const onChange = useCallback(e => setInput(e.target.value), []);
@@ -45,41 +38,23 @@ const AlbumCheckForm = ({ setExistCheck, setList, togglePopUp }) => {
             <br/>
             <Button variant="contained"
                     onClick={() => {
-                        setList["albumId"](0);
+                        setInputs({
+                            ...inputs,
+                            "albumId": 0
+                        })
                         setExistCheck(true);
-                        togglePopUp();
+                        setPopUp();
                     }}
             >
                 신규생성(동명인 경우)
             </Button>
-            <Table>
-                <TableBody>
-                    {
-                        flag ? albums.map(row =>
-                            (
-                                <TableRow key={row.albumId}
-                                          hover
-                                          onClick={() =>
-                                              TableRowOnClick(
-                                                  row, setList,
-                                                  setExistCheck, togglePopUp
-                                              )}
-                                          style={{fontSize: "large"}}
-                                >
-                                    <TableCell>
-                                        <img
-                                            alt="profile" src={row.imageUri}
-                                            style={{width: "150px", height: "150px"}}
-                                        />
-                                    </TableCell>
-                                    <TableCell width="300px">{row.albumName}</TableCell>
-                                    <TableCell width="200px">{row.company}</TableCell>
-                                </TableRow>
-                            )
-                        ): flag
-                    }
-                </TableBody>
-            </Table>
+            <AlbumCheckResultTable albums={albums}
+                                   inputs={inputs}
+                                   setInputs={setInputs}
+                                   setExistCheck={setExistCheck}
+                                   setPopUp={setPopUp}
+            />
+
         </div>
     )
 };

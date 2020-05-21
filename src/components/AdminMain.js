@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import styled from "styled-components"
+import axios from "axios";
 const StyledDiv = styled.div`
   display: grid;
   justify-content: center;
@@ -49,6 +50,17 @@ const AdminMain = () => {
                     음악 정보 등록
                 </Button>
             </Link>
+
+            <Button onClick={() => {
+                axios.post("http://localhost:8080/api/transaction/", {
+                    amount: 1000,
+                    artistId: 1,
+                    datetime: "2020-05-20",
+                    uid: "123asdf13"
+                }).then(res => alert(res))
+                    .catch((err => alert(err)));
+
+            }}>버튼</Button>
         </StyledDiv>
     )
 };

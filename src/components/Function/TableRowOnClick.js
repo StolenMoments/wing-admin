@@ -1,7 +1,7 @@
 export default function(row, inputs, setInputs, setExistCheck, setPopUp){
     for (let key in row) {
         if (inputs.hasOwnProperty(key)) {
-            if (key === "debutDate") {
+            if (key === "debutDate" || key === "date") {
                 inputs = {
                     ...inputs,
                     [key] : new Date(
